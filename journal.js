@@ -3,6 +3,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Sample movie data (could also fetch from an API)
 
+  // Miroslav added this part
+
+  // MOVIE DETAILS - get a single movie with id
+  // Authorization Token
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNDA5NmM3NzM1M2I5OTFlNzlhZWZhMzJkMzc1NDc2NCIsIm5iZiI6MTczMzIxNDU4MC4xNCwic3ViIjoiNjc0ZWMxNzQ3OTliYzA0NzJkZWVhNjgwIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.KJIvTK6gNCgpJNKw2i3ecXIT5SczGO-InrhIvZNrmEg",
+    },
+  };
+
+  const movieId = "123";
+
+  fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, options)
+    .then((res) => res.json())
+    .then((res) => console.log(res))
+    .catch((err) => console.error(err));
+
+  // Miroslav end
+
   // Load notes from localStorage
   const loadNotes = () => {
     return JSON.parse(localStorage.getItem("movieNotes")) || {};
