@@ -4,9 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Diary</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍿</text></svg>"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body class="bg-gray-900" id="top">
+    <header class="flex justify-center items-center gap-12 m-2 text-white">
+      <h1 class="p-2 text-xl">🍿 Movie Diary</h1>
+      <nav class="">
+        <ul class="flex p-2">
+          <li class="px-4"><a href="index.html">Home</a></li>
+          <li class="px-4"><a href="journal.html">Journal</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="bg-gray-900 flex items-center justify-center h-screen">
+      <div class="w-full max-w-4xl px-4">
+        <div class="flex justify-center items-center space-x-4">
+          <input
+            type="text"
+            id="movieSearch"
+            placeholder="Enter movie name"
+            class="p-4 text-xl rounded-lg border-2 border-yellow-400 bg-gray-800 text-white w-3/4 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+          />
+          <button
+            onclick="searchMovie()"
+            class="p-4 bg-yellow-400 text-gray-800 text-xl rounded-lg border-2 border-yellow-400 hover:bg-yellow-500 transition duration-300"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <footer class="flex justify-center gap-12 m-2 text-white text-sm">
+      <p>🍿 Movie Diary</p>
+      <p>Copyright © 2024</p>
+      <p><a href="#top">Back to top</a></p>
+    </footer>
+    <script>
+      function searchMovie() {
+        const query = document.getElementById("movieSearch").value;
+        alert("Searching for: " + query);
+      }
+    </script>
+
     <script src="main.js"></script>
   </body>
 </html>
