@@ -20,17 +20,18 @@
         </ul>
       </nav>
     </header>
-    <div class="bg-gray-900 flex items-center justify-center h-screen">
+    <div class="bg-gray-900 flex items-center justify-center">
       <div class="w-full max-w-4xl px-4">
         <div class="flex justify-center items-center space-x-4">
           <input
             type="text"
-            id="movieSearch"
+            id="search-movie"
             placeholder="Enter movie name"
             class="p-4 text-xl rounded-lg border-2 border-yellow-400 bg-gray-800 text-white w-3/4 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
           />
           <button
-            onclick="searchMovie()"
+            type="submit"
+            id="search-button"
             class="p-4 bg-yellow-400 text-gray-800 text-xl rounded-lg border-2 border-yellow-400 hover:bg-yellow-500 transition duration-300"
           >
             Search
@@ -38,18 +39,17 @@
         </div>
       </div>
     </div>
+    <div
+      id="search-container"
+      class="flex flex-wrap gap-5 text-white text-center justify-center m-10"
+    >
+      <!-- search results  -->
+    </div>
     <footer class="flex justify-center gap-12 m-2 text-white text-sm">
       <p>🍿 Movie Diary</p>
       <p>Copyright © 2024</p>
       <p><a href="#top">Back to top</a></p>
     </footer>
-    <script>
-      function searchMovie() {
-        const query = document.getElementById("movieSearch").value;
-        alert("Searching for: " + query);
-      }
-    </script>
-
     <script src="main.js"></script>
   </body>
 </html>
