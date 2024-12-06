@@ -21,33 +21,54 @@ fetch(
 
 // SEARCH for a Movie title, page 1, 20 results
 
-const searchButtonEl = document.getElementById("search-button");
-searchButtonEl.addEventListener("click", () => {
-  const searchMovieEl = document.getElementById("search-movie");
-  const queryMovieTitle = () => searchMovieEl.value;
+const searchForm = document.getElementById("search-form");
+const searchInput = document.getElementById("search-movie");
+const searchResultsContainerEl = document.getElementById("search-container");
+const clearButton = document.getElementById("clear-button");
+
+searchForm.addEventListener("submit", (event) => {
+  event.preventDefault(); // Prevent the form from reloading the page
+
+  const queryMovieTitle = searchInput.value;
+
+  // Clear previous results
+  searchResultsContainerEl.innerHTML = "";
+
+  // Fetch new search results
   fetch(
-    `https://api.themoviedb.org/3/search/movie?query=${queryMovieTitle()}&include_adult=false&language=en-US&page=1`,
+    `https://api.themoviedb.org/3/search/movie?query=${queryMovieTitle}&include_adult=false&language=en-US&page=1`,
     options
   )
     .then((res) => res.json())
     .then((res) => {
-      // console.log(res);
-      const searchResultsContainerEl =
-        document.getElementById("search-container");
-      res.results.forEach((movie) => {
-        const imgPath = `https://image.tmdb.org/t/p/w200${movie.poster_path})`;
-        // console.log(movie.title, movie.release_date.slice(0, 4), imgPath);
-        const movieUl = document.createElement("ul");
-        movieUl.className = "flex flex-col items-center w-48 m-2";
-        movieUl.innerHTML = `
-          <li><img class="object-cover h-60 w-40 rounded-lg pb-2" src="${imgPath}" alt="Image of ${
-          movie.title
-        }"></li>
-          <li>${movie.title} (${movie.release_date.slice(0, 4)})</li>
-        `;
-        searchResultsContainerEl.appendChild(movieUl);
-      });
-    })
+      if (res.results.length === 0) {
+        // Display "No results found" message
+        const noResultsMessage = document.createElement("p");
+        noResultsMessage.className = "text-center text-gray-400 text-lg mt-4";
+        noResultsMessage.textContent =
+          "No results found. Please try another search.";
+        searchResultsContainerEl.appendChild(noResultsMessage);
+      } else {
+        res.results.forEach((movie) => {
+          const imgPath = movie.poster_path
+            ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+            : "https://placehold.co/200x300?text=No+Movie+Poster";
 
+          const movieUl = document.createElement("ul");
+          movieUl.className =
+            "flex flex-col items-center w-64 m-2 bg-slate-700 rounded-lg p-3";
+          movieUl.innerHTML = `
+            <li><img class="object-cover rounded-lg my-2" src="${imgPath}" alt="Image of ${
+            movie.title
+          }"></li>
+            <li><strong>${movie.title}</strong></li>
+            <li>${
+              movie.release_date ? movie.release_date.slice(0, 4) : "N/A"
+            }</li>
+          `;
+          searchResultsContainerEl.appendChild(movieUl);
+        });
+      }
+    })
     .catch((err) => console.error(err));
 });
