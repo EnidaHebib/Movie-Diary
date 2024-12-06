@@ -28,13 +28,6 @@
       </header>
       <!-- END HEADER -->
       <main flex-grow>
-        <!-- START LIST POPULAR MOVIES AND ADD FAVORITES TO LOCAL STORAGE -->
-<!-- Movie Cards Section -->
-    <section
-      class="container mx-auto px-6 mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-    >
-    </section>
-        <!-- END LIST POPULAR MOVIES AND ADD FAVORITES TO LOCAL STORAGE -->
         <!--START SEARCH THE MOVIE -->
         <div class="bg-gray-900 flex items-center justify-center">
           <form id="search-form" class="w-full max-w-4xl px-4">
@@ -58,12 +51,21 @@
         </div>
         <div
           id="search-container"
-          class="flex flex-wrap gap-5 text-white text-center justify-center m-10"
+          class="flex flex-wrap gap-5 text-white text-center justify-center m-6"
         >
           <!-- search results  -->
         </div>
 
         <!--END SEARCH THE MOVIE -->
+        <!-- START LIST POPULAR MOVIES AND ADD FAVORITES TO LOCAL STORAGE -->
+        <h1 class="text-2xl text-white text-center pb-4">
+          This Month's Popular Movies
+        </h1>
+        <!-- Movie Cards Section -->
+        <section
+          class="container mx-auto px-6 mt-4 mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+        ></section>
+        <!-- END LIST POPULAR MOVIES AND ADD FAVORITES TO LOCAL STORAGE -->
       </main>
       <!-- START FOOTER -->
       <footer
