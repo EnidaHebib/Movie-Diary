@@ -47,7 +47,7 @@ const createMovieCard = (movie) => {
         overview || "No description available."
       }</p>
       <button
-        class="bg-yellow-400 text-black px-4 py-2 rounded-md font-bold hover:bg-yellow-500 add-to-favorite"
+        class="bg-yellow-400 text-black px-4 py-2 rounded-md font-bold hover:bg-yellow-500 add-to-favorite mt-auto"
         data-id="${id}"
         data-title="${title}"
         data-poster="${imagePath}"
@@ -90,7 +90,7 @@ const attachFavoriteButtons = () => {
         Overview: movieOverview,
         Poster: moviePoster,
       };
-      // alert(`${movieTitle} added to favorites!`);
+      alert(`${movieTitle} added to favorites!`);
       const previousData =
         JSON.parse(localStorage.getItem("favoriteMovies")) || [];
       // Set item to a stringified version of an array with the old and new tasks
