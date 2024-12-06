@@ -30,7 +30,7 @@ const fetchMovies = async () => {
 
 /// Function to generate movie card HTML
 const createMovieCard = (movie) => {
-  const { title, overview, poster_path } = movie;
+  const { id, title, overview, poster_path } = movie;
   const imagePath = poster_path
     ? `https://image.tmdb.org/t/p/w300${poster_path}`
     : "https://via.placeholder.com/150x225";
@@ -47,8 +47,11 @@ const createMovieCard = (movie) => {
         overview || "No description available."
       }</p>
       <button
-        class="bg-yellow-400 text-black px-4 py-2 rounded-md font-bold hover:bg-yellow-500 add-to-favorite"
+        class="bg-yellow-400 text-black px-4 py-2 rounded-md font-bold hover:bg-yellow-500 add-to-favorite mt-auto"
+        data-id="${id}"
         data-title="${title}"
+        data-poster="${imagePath}"
+        data-overview="${overview}"
       >
         Add to Favorite
       </button>
@@ -78,7 +81,23 @@ const attachFavoriteButtons = () => {
   favoriteButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const movieTitle = button.dataset.title;
+      const movieId = button.dataset.id;
+      const movieOverview = button.dataset.overview;
+      const moviePoster = button.dataset.poster;
+      const addFavMovie = {
+        id: movieId,
+        Title: movieTitle,
+        Overview: movieOverview,
+        Poster: moviePoster,
+      };
       alert(`${movieTitle} added to favorites!`);
+      const previousData =
+        JSON.parse(localStorage.getItem("favoriteMovies")) || [];
+      // Set item to a stringified version of an array with the old and new tasks
+      localStorage.setItem(
+        "favoriteMovies",
+        JSON.stringify([...previousData, addFavMovie])
+      );
     });
   });
 };
