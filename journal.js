@@ -11,6 +11,28 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("favoriteMovies", JSON.stringify(movies));
   };
 
+  // Remove movie from favorites
+  const removeFavorites = (movieId) => {
+    // Load current favorite movies
+    const favoriteMovies = loadFavorites();
+
+    // Filter out the movie with the given ID
+    const updatedMovies = favoriteMovies.filter(
+      (movie) => Number(movie.id) !== Number(movieId)
+    );
+
+    // Save the updated list of favorite movies
+    saveFavorites(updatedMovies);
+
+    // Optionally, you can re-render the favorites or remove the movie element from the DOM here
+    const movieDiv = document
+      .querySelector(`[data-id="${movieId}"]`)
+      .closest("div");
+    if (movieDiv) {
+      movieDiv.remove(); // Remove the movie card from the DOM
+    }
+  };
+
   // Render a single movie card
   const renderMovie = (movie) => {
     const movieDiv = document.createElement("div");
@@ -65,6 +87,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     favoritesContainer.appendChild(movieDiv);
+
+    // Add event listener to remove link
+    const removeLink = movieDiv.querySelector("a");
+    removeLink.addEventListener("click", (event) => {
+      event.preventDefault(); // Prevent the default action of the anchor tag (navigation)
+      const movieId = Number(removeLink.dataset.id); // Get the movie ID from the data-id attribute
+      removeFavorites(movieId);
+    });
   };
 
   // Render all favorite movies
