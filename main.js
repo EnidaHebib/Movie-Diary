@@ -142,17 +142,18 @@ searchForm.addEventListener("submit", (event) => {
 
           const moviesDiv = document.createElement("div");
           moviesDiv.className =
-            "flex flex-col items-center w-64 m-2 bg-slate-700 rounded-lg p-3";
+            "flex flex-col col-span-full items-center w-64 m-2 bg-gray-800 rounded-lg p-3";
           moviesDiv.innerHTML = `
-            <img class="object-cover rounded-lg mt-2 mb-auto" src="${imgPath}" alt="Image of ${
+            <img class="object-cover rounded-lg mt-2 mb-3" src="${imgPath}" alt="Image of ${
             movie.title
           }">
-            <p class="mt-3"><strong>${movie.title}</strong></p>
-            <p class="text-gray-400 text-sm mb-3">${
+          <div class="mt-auto">
+            <p class=""><strong>${movie.title}</strong></p>
+            <p class=" text-gray-400 text-sm mb-3">${
               movie.release_date ? movie.release_date.slice(0, 4) : "N/A"
             }</p>
           <button
-            class="bg-yellow-400 text-black px-4 py-2 mb-1 rounded-md font-bold hover:bg-yellow-500 active:bg-yellow-300 add-to-favorite mt-auto"
+            class="bg-yellow-400 text-black px-4 py-2 mb-1 rounded-md font-bold hover:bg-yellow-500 active:bg-yellow-300 add-to-favorite"
             data-id="${movie.id}"
             data-title="${movie.title}"
             data-poster="${imgPath}"
@@ -160,6 +161,7 @@ searchForm.addEventListener("submit", (event) => {
           >
           Add to Favorites
           </button>
+          </div>
           `;
           searchResultsContainerEl.appendChild(moviesDiv);
         });
