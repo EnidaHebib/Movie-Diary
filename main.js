@@ -91,6 +91,14 @@ const attachFavoriteButtons = () => {
         Poster: moviePoster,
       };
       alert(`${movieTitle} added to favorites!`);
+      button.disabled = true;
+      button.textContent = "Saved to Favorites";
+      button.classList.add(
+        "bg-yellow-800",
+        "hover:bg-yellow-800",
+        "active:bg-yellow-800"
+      );
+
       const previousData =
         JSON.parse(localStorage.getItem("favoriteMovies")) || [];
       // Set item to a stringified version of an array with the old and new tasks
